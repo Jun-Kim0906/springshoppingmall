@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 2 elements from project &apos;PL1CRUDSBoard&apos;&#x0A;- Original project: &apos;PL1CRUDSBoard&apos;&#x0A;- Original elements:&#x0A;     PL1CRUDSBoard/src/main/java/com.mycrud.crud.dao&#x0A;     com.mycrud.crud.dao.BoardDao.java" description="Delete elements" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mycrud.crud.dao" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1606661194706" subPackages="false" version="1.0"/>
+</session>

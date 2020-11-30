@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.wildwebdeveloper.launchConfiguration.NPMLaunch">
+    <stringAttribute key="org.eclipse.debug.core.ATTR_WORKING_DIRECTORY" value="/Users/harin/Downloads/PL1CRUDProject"/>
+    <stringAttribute key="program" value=""/>
+    <stringAttribute key="runtimeArgs" value="install"/>
+</launchConfiguration>
