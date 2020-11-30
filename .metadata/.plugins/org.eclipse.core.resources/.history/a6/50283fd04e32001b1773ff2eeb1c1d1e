@@ -1,0 +1,5 @@
+package com.mycrud.crud.board;
+
+public class BoardVO {
+
+}

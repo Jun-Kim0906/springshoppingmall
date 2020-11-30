@@ -1,0 +1,5 @@
+package com.mycrud.crud.dao;
+
+public class BoardDAO {
+
+}
