@@ -2,7 +2,11 @@
 <%@ page session="false" %>
 <html>
 <head>
+<<<<<<< HEAD
 	<title>This is test</title>
+=======
+	<title>home is</title>
+>>>>>>> jun
 </head>
 <body>
 <h1>
