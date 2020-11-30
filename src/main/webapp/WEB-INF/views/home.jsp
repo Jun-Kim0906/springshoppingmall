@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>home is</title>
+	<title>jun branch</title>
 </head>
 <body>
 <h1>
