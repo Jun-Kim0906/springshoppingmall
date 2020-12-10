@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Product">
+	<insert id="insertProduct">
+		insert into Products (uid, name, price, bdate, photo, content)
+		values
+		(#{uid}, #{name}, #{price}, #{bdate}, #{photo}, #{content})
+	</insert>
+	<update id="updateProduct">
+		update Products
+		set name=#{name}, price=#{price}, bdate=#{bdate}, photo=#{photo}, content=#{content}, tumbsup=#{thumbsup}
+		where pid=#{pid}
+	</update>
+	<delete id="deleteProduct">
+		delete from Products where pid=#{pid}
+	</delete>
+	<select id="getProduct" resultType="product">
+		select * from Products where pid=#{pid}
+	</select>
+	<select id="getrecentProductList" resultType="product">
+		select * from Products order by regdate desc limit 6
+	</select>
+	<select id="thumbsupProduct">
+		update Products set thumbsup = thumbsup +1 where pid=#{pid}
+	</select>
+	<select id="getpopularProductList" resultType="product">
+		select * from Products order by thumbsup desc limit 3
+	</select>
+	<select id="getProductList" resultType="product">
+		select * from Products order by regdate desc
+	</select>	
+	<select id="getMyProductList" resultType="product">
+		select * from Products where uid=#{uid}
+	</select>
+</mapper>

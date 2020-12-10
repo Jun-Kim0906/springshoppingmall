@@ -10,6 +10,20 @@ public class ProductVO {
 	private Date bdate;
 	private String content;
 	private String photo;
+	private int thumbsup;
+	private Date regdate;
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public int getThumbsup() {
+		return thumbsup;
+	}
+	public void setThumbsup(int thumbsup) {
+		this.thumbsup = thumbsup;
+	}
 	public String getPid() {
 		return pid;
 	}
