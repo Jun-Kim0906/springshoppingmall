@@ -26,7 +26,7 @@
             <li><a href="">All Product</a></li>
             <li><a href="">My Product</a></li>
             <li><a href="">Search <i class="fas fa-search"></i></a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="login">Login</a></li>
             <li><a href="">Register</a></li>
         </ul>
     </nav>
