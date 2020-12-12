@@ -2,6 +2,8 @@ package com.shop.myapp.product;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductVO {
 	private String pid;
 	private String uid;
@@ -12,6 +14,14 @@ public class ProductVO {
 	private String photo;
 	private int thumbsup;
 	private Date regdate;
+	private MultipartFile uploadFile;
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	public Date getRegdate() {
 		return regdate;
 	}

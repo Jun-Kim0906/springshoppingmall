@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import com.shop.myapp.product.ProductDAO;
 import com.shop.myapp.product.ProductVO;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,8 +19,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductDAO productDAO;
 	
 	@Override
-	public int insertProduct(ProductVO vo) {
-		return productDAO.insertProduct(vo);
+	public int insertProduct(ProductVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
+		return productDAO.insertProduct(vo, request);
 	}
 
 	@Override

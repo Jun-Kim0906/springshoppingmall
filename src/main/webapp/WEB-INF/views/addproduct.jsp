@@ -1,3 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Product</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Pen+Script&family=Yeon+Sung&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<style>
 * {
 	margin: 0;
 	padding: 0;
@@ -319,3 +335,87 @@ select:focous {
     -webkit-transition: left 0.30000000000000004s ease;
     -moz-transition: left 0.30000000000000004s ease;
 }
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<div class="logo">
+				<img src="${path}/resources/images/logo.png" width="125px">
+			</div>
+			<nav>
+				<ul>
+					<li><a href="home">Home</a></li>
+					<li><a href="">All Product</a></li>
+					<li><a href="">My Product</a></li>
+					<li><a href="">Search <i class="fas fa-search"></i></a></li>
+					<li><a href="login.html">Login</a></li>
+					<li><a href="login.html">Register</a></li>
+				</ul>
+			</nav>
+			<img src="${path}/resources/images/cart.png" width="30px" height="30px">
+		</div>
+	</div>
+
+	<div class="small-container">
+		<div class="row row-2">
+			<h2>Add Product</h2>
+		</div>
+		<form action="addproductOk" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="email">Product Name:</label> <input type="text" class="form-control" id="username" placeholder="상품 이름을 입력하세요 " name="name">
+			</div>
+			<div class="form-group">
+				<label for="userid">Price:</label> <input type="number" class="form-control" id="userid" placeholder="판매 가격을 입력하세요" name="price">
+			</div>
+			<div class="form-group">
+				<label for="place">구입시기:</label> <input type="date" class="form-control" id="place" placeholder="제품 구입 시기를 입력하세" name="bdate">
+			</div>
+			<div class="form-group">
+				<label for="photo">제품 사진:</label> <input type="file" class="form-control" id="photo" name="photo">
+			</div>
+			<div class="form-group">
+				<label for="detail">상세 설명:</label>
+				<textarea cols="50" class="form-control" rows="5" placeholder="후기를 입력 해주세요" name="content"></textarea>
+			</div>
+			<button type="button" class="btn btn-danger" onclick="history.back()">Cancel</button>
+			<button type="submit" value="upload" class="btn btn-default pull-right">Submit</button>
+
+		</form>
+	</div>
+
+	<!------- footer --------->
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col-1 col-9" style="float: left;">
+					<img src="${path}/resources/images/footer-logo.png" id="footer-logo">
+					<p>우린 쓸모 남은 물건을 사고 팔아요.</p>
+				</div>
+				<div class="footer-col-3 col-9">
+					<h3>Contact Us</h3>
+					<ul>
+						<li>Woo <i class="fas fa-phone"></i></li>
+						<li>Rin <i class="fas fa-phone"></i></li>
+						<li>ㅤ</li>
+						<li>ㅤ</li>
+					</ul>
+				</div>
+				<div class="footer-col-4 col-9">
+					<h3>Follow Us</h3>
+					<ul>
+						<li>Facebook</li>
+						<li>Twitter</li>
+						<li>Instagram</li>
+						<li>Youtube</li>
+					</ul>
+				</div>
+			</div>
+			<hr>
+			<p class="copyright">Copyright 2020 - We are Market</p>
+		</div>
+	</div>
+
+</body>
+</html>
