@@ -20,12 +20,17 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="">Home</a></li>
-					<li><a href="">All Product</a></li>
-					<li><a href="">My Product</a></li>
+					<li><a href="/myapp/home">Home</a></li>
+					<li><a href="/myapp/allproduct">All Product</a></li>
+					<li><a href="/myapp/myproduct">My Product</a></li>
 					<li><a href="">Search <i class="fas fa-search"></i></a></li>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="login.html">Register</a></li>
+					<c:if test="${login==null}">
+						<li><a href="login">Login</a></li>
+					</c:if>
+					<c:if test="${login!=null}">
+						<li><a>${login.username}님 환영합니다</a></li>
+						<li><a>Sign-out</a></li>
+					</c:if>
 				</ul>
 			</nav>
 			<img src="${path}/resources/images/cart.png" width="30px" height="30px">

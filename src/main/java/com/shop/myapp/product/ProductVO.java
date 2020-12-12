@@ -9,7 +9,7 @@ public class ProductVO {
 	private String uid;
 	private String name;
 	private float price;
-	private Date bdate;
+	private String bdate;
 	private String content;
 	private String photo;
 	private int thumbsup;
@@ -58,14 +58,21 @@ public class ProductVO {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Date getBdate() {
-		return bdate;
-	}
-	public void setBdate(Date bdate) {
-		this.bdate = bdate;
-	}
+//	public Date getBdate() {
+//		return bdate;
+//	}
+//	public void setBdate(Date bdate) {
+//		this.bdate = bdate;
+//	}
+	
 	public String getContent() {
 		return content;
+	}
+	public String getBdate() {
+		return bdate;
+	}
+	public void setBdate(String bdate) {
+		this.bdate = bdate;
 	}
 	public void setContent(String content) {
 		this.content = content;

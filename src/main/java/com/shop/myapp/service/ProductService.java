@@ -11,8 +11,10 @@ public interface ProductService {
 	public int insertProduct(ProductVO vo, HttpServletRequest request) throws IllegalStateException, IOException;
 	public int deleteProduct(int pid);
 	public List<ProductVO> getrecentProduct();
-	public int thumbsupProduct(ProductVO vo);
+	public int thumbsupProduct(int pid);
 	public List<ProductVO> getpopularProductList();
 	public List<ProductVO> getProductList();
 	public List<ProductVO> getMyProductList(int uid);
+	public ProductVO getProduct(int pid);
+	public List<String> getColumnList();
 }

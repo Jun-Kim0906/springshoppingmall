@@ -258,84 +258,83 @@ select:focous {
 }
 
 .button_base {
-    margin: 0;
-    border: 0;
-    font-size: 18px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    margin-top: -25px;
-    margin-left: -100px;
-    width: 200px;
-    height: 50px;
-    text-align: center;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-user-select: none;
-    cursor: default;
+	margin: 0;
+	border: 0;
+	font-size: 18px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -100px;
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-user-select: none;
+	cursor: default;
 }
 
 .button_base:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .b03_skewed_slide_in {
-    overflow: hidden;
-    border: #000000 solid 1px;
+	overflow: hidden;
+	border: #000000 solid 1px;
 }
 
 .b03_skewed_slide_in div {
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    padding: 10px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 50px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 10px;
 }
 
 .b03_skewed_slide_in div:nth-child(1) {
-    color: #000000;
-    background-color: #ffffff;
+	color: #000000;
+	background-color: #ffffff;
 }
 
 .b03_skewed_slide_in div:nth-child(2) {
-    background-color: #000000;
-    width: 230px;
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    transform: translate(-250px, 0px) skewX(-30deg);
-    -webkit-transform: translate(-250px, 0px) skewX(-30deg);
-    -moz-transform: translate(-250px, 0px) skewX(-30deg);
+	background-color: #000000;
+	width: 230px;
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transform: translate(-250px, 0px) skewX(-30deg);
+	-webkit-transform: translate(-250px, 0px) skewX(-30deg);
+	-moz-transform: translate(-250px, 0px) skewX(-30deg);
 }
 
 .b03_skewed_slide_in div:nth-child(3) {
-    color: #ffffff;
-    left: -200px;
-    transition: left 0.2s ease;
-    -webkit-transition: left 0.2s ease;
-    -moz-transition: left 0.2s ease;
+	color: #ffffff;
+	left: -200px;
+	transition: left 0.2s ease;
+	-webkit-transition: left 0.2s ease;
+	-moz-transition: left 0.2s ease;
 }
 
 .b03_skewed_slide_in:hover div:nth-child(2) {
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    transform: translate(-15px, 0px) skewX(-30deg);
-    -webkit-transform: translate(-15px, 0px) skewX(-30deg);
-    -moz-transform: translate(-15px, 0px) skewX(-30deg);
+	transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	transform: translate(-15px, 0px) skewX(-30deg);
+	-webkit-transform: translate(-15px, 0px) skewX(-30deg);
+	-moz-transform: translate(-15px, 0px) skewX(-30deg);
 }
 
 .b03_skewed_slide_in:hover div:nth-child(3) {
-    left: 0px;
-    transition: left 0.30000000000000004s ease;
-    -webkit-transition: left 0.30000000000000004s ease;
-    -moz-transition: left 0.30000000000000004s ease;
+	left: 0px;
+	transition: left 0.30000000000000004s ease;
+	-webkit-transition: left 0.30000000000000004s ease;
+	-moz-transition: left 0.30000000000000004s ease;
 }
-
 </style>
 </head>
 <body>
@@ -346,12 +345,17 @@ select:focous {
 			</div>
 			<nav>
 				<ul>
-					<li><a href="home">Home</a></li>
-					<li><a href="">All Product</a></li>
-					<li><a href="">My Product</a></li>
+					<li><a href="/myapp/home">Home</a></li>
+					<li><a href="/myapp/allproduct">All Product</a></li>
+					<li><a href="/myapp/myproduct">My Product</a></li>
 					<li><a href="">Search <i class="fas fa-search"></i></a></li>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="login.html">Register</a></li>
+					<c:if test="${login==null}">
+						<li><a href="login">Login</a></li>
+					</c:if>
+					<c:if test="${login!=null}">
+						<li><a>${login.username}님 환영합니다</a></li>
+						<li><a>Sign-out</a></li>
+					</c:if>
 				</ul>
 			</nav>
 			<img src="${path}/resources/images/cart.png" width="30px" height="30px">
@@ -373,7 +377,7 @@ select:focous {
 				<label for="place">구입시기:</label> <input type="date" class="form-control" id="place" placeholder="제품 구입 시기를 입력하세" name="bdate">
 			</div>
 			<div class="form-group">
-				<label for="photo">제품 사진:</label> <input type="file" class="form-control" id="photo" name="photo">
+				<label for="photo">제품 사진:</label> <input type="file" class="form-control" id="photo" name="uploadFile">
 			</div>
 			<div class="form-group">
 				<label for="detail">상세 설명:</label>

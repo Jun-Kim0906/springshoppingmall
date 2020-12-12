@@ -21,15 +21,16 @@
 				</div>
 				<nav>
 					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="allproduct">All Product</a></li>
-						<li><a href="myproduct">My Product</a></li>
+						<li><a href="/myapp/home">Home</a></li>
+						<li><a href="/myapp/allproduct">All Product</a></li>
+						<li><a href="/myapp/myproduct">My Product</a></li>
 						<li><a href="">Search <i class="fas fa-search"></i></a></li>
 						<c:if test="${login==null}">
 							<li><a href="login">Login</a></li>
 						</c:if>
 						<c:if test="${login!=null}">
 							<li><a>${login.username}님 환영합니다</a></li>
+							<li><a>Sign-out</a></li>
 						</c:if>
 					</ul>
 				</nav>
@@ -68,78 +69,25 @@
 	<div class="small-container">
 		<h2 class="title">Featured Products</h2>
 		<div class="row">
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
+			<c:forEach items="${poplist}" var="u">
+				<div class="col-4" OnClick="location.href='detail/${u.getPid()}'">
+					<img src="${pageContext.request.contextPath}/upload/${u.getPhoto()}">
+					<h4>${u.getName() }</h4>
+					<div class="rating"></div>
+					<p>${u.getPrice() }</p>
+				</div>
+			</c:forEach>
 		</div>
 		<h2 class="title">Latest Products</h2>
 		<div class="row">
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<div class="rating"></div>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<p>상품가격</p>
-			</div>
-			<div class="col-4">
-				<img src="${path}/resources/images/product-1.jpg">
-				<h4>상품명</h4>
-				<p>상품가격</p>
-			</div>
+			<c:forEach items="${recentlist}" var="u">
+				<div class="col-4" OnClick="location.href='detail/${u.getPid()}'">
+					<img src="${path}/resources/images/product-1.jpg">
+					<h4>${u.getName() }</h4>
+					<div class="rating"></div>
+					<p>${u.getPrice() }</p>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 	<!------- footer --------->

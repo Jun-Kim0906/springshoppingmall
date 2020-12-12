@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,15 +45,22 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
-//		model.addAttribute("username", userVO.getUsername() );
-//		session.removeAttribute("username");
+		model.addAttribute("poplist", productService.getpopularProductList() );
+		model.addAttribute("recentlist", productService.getrecentProduct());
 		if(userVO==null)
 			session.invalidate();
 		return "index";
 	}
+	@RequestMapping(value = "/dbsibal", method = RequestMethod.GET)
+	public String sibal(HttpSession session, Model model) {
+		model.addAttribute("testlist", productService.getProductList() );
+		return "dbsibal";
+	}
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String rehome() {
-		return "index";
+	public String rehome(Model model) {
+		model.addAttribute("poplist", productService.getpopularProductList() );
+		model.addAttribute("recentlist", productService.getrecentProduct());
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -75,13 +83,31 @@ public class HomeController {
 //	}
 
 	@RequestMapping(value = "/allproduct", method = RequestMethod.GET)
-	public String allproduct() {
+	public String allproduct(Model model) {
+		model.addAttribute("list", productService.getProductList());
 		return "allproduct";
 	}
 
 	@RequestMapping(value = "/myproduct", method = RequestMethod.GET)
 	public String myproduct() {
 		return "myproduct";
+	}
+	
+	@RequestMapping(value = "/detail/{pid}", method = RequestMethod.GET)
+	public String detail(@PathVariable("pid") int pid, Model model, HttpServletRequest request) {
+		ProductVO productVO = productService.getProduct(pid);
+		model.addAttribute("ProductVO", productVO);
+		String path =  request.getSession().getServletContext().getRealPath("upload");
+		model.addAttribute("filepath", path);
+		System.out.println(path);
+		System.out.println(productVO.getPhoto());
+		return "detail";
+	}
+	
+	@RequestMapping(value = "/detail/thumbsup/{pid}", method = RequestMethod.GET)
+	public String thumbsup(@PathVariable("pid") int pid, Model model, HttpServletRequest request) {
+		productService.thumbsupProduct(pid);
+		return "redirect:/detail/"+pid;
 	}
 	
 	@RequestMapping(value = "/addproduct", method = RequestMethod.GET)
@@ -117,6 +143,7 @@ public class HomeController {
 		// TODO : 로그인안됐다고 전달을 해줘야 할거임
 		return "redirect:/";
 	}
+
 
 	@RequestMapping(value = "/signupOk", method = RequestMethod.POST)
 	public String signup(UserVO vo) {

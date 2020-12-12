@@ -36,9 +36,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int thumbsupProduct(ProductVO vo) {
+	public int thumbsupProduct(int pid) {
 		// TODO Auto-generated method stub
-		return productDAO.thumbsupProduct(vo);
+		return productDAO.thumbsupProduct(pid);
 	}
 
 	@Override
@@ -57,6 +57,16 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> getMyProductList(int uid) {
 		// TODO Auto-generated method stub
 		return productDAO.getMyProductList(uid);
+	}
+
+	@Override
+	public List<String> getColumnList() {
+		return productDAO.getColumnList();
+	}
+
+	@Override
+	public ProductVO getProduct(int pid) {
+		return productDAO.getProduct(pid);
 	}
 	
 	

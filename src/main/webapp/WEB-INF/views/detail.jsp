@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Product</title>
+<title>Detail Product</title>
 <link rel="stylesheet" href="${path}/resources/css/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,26 +36,34 @@
 			<img src="${path}/resources/images/cart.png" width="30px" height="30px">
 		</div>
 	</div>
+
+	<!-- -----------single product details -------------->
 	<div class="small-container">
-
-		<div class="row row-2">
-			<h2>All Products</h2>
-		</div>
-
-
 		<div class="row">
-			<c:forEach items="${list}" var="u">
-				<div class="col-4" OnClick="location.href='detail/${u.getPid()}'" style="float: left; border: 1px solid black;">
-					<img src="${pageContext.request.contextPath}/upload/${u.getPhoto()}">
-					<h4>${u.getName() }</h4>
-					<div class="rating"></div>
-					<p>${u.getPrice() }</p>
-				</div>
-			</c:forEach>
+			<div class="col-2">
+				<img src="${pageContext.request.contextPath}/upload/${ProductVO.getPhoto()}" width="100%">
+
+				<div class="small-img-row"></div>
+			</div>
+			<div class="col-2">
+				<p>Home / 상품명</p>
+				<h1>${ProductVO.getName()}</h1>
+				<h4>${ProductVO.getPrice()}</h4>
+				<a href="thumbsup/${ProductVO.getPid()}" class="btn">Thumbs UP</a>
+
+				<h3>
+					Product Details <i class="fa fa-indent"></i>
+				</h3>
+				<br>
+				<p>${ProductVO.getContent()}</p>
+				<p>ㅤ</p>
+				<p>ㅤ</p>
+				<p>ㅤ</p>
+				<p>ㅤ</p>
+				<p>ㅤ</p>
+			</div>
 		</div>
-
 	</div>
-
 	<!------- footer --------->
 	<div class="footer">
 		<div class="container">
@@ -67,8 +75,8 @@
 				<div class="footer-col-3">
 					<h3>Contact Us</h3>
 					<ul>
-						<li>Woo <i class="fas fa-phone"></i></li>
-						<li>Rin <i class="fas fa-phone"></i></li>
+						<li>Woo<i class="fas fa-phone"></i></li>
+						<li>Rin<i class="fas fa-phone"></i></li>
 						<li>ㅤ</li>
 						<li>ㅤ</li>
 					</ul>
