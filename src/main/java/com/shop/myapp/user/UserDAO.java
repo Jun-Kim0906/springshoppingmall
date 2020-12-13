@@ -28,4 +28,9 @@ public class UserDAO {
 	public UserVO getUser(UserVO vo) {
 		return sqlSession.selectOne("User.getUser", vo);
 	}
+//	
+//	public boolean logincheck(UserVO vo) {
+//		String name = sqlSession.selectOne("User.loginCheck", vo);
+//		return (name==null)?false:true;
+//	}
 }

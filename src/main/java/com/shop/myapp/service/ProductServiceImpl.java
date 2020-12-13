@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import com.shop.myapp.product.ProductDAO;
 import com.shop.myapp.product.ProductVO;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,8 +19,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductDAO productDAO;
 	
 	@Override
-	public int insertProduct(ProductVO vo) {
-		return productDAO.insertProduct(vo);
+	public int insertProduct(ProductVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
+		return productDAO.insertProduct(vo, request);
 	}
 
 	@Override
@@ -33,9 +36,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int thumbsupProduct(ProductVO vo) {
+	public int thumbsupProduct(int pid) {
 		// TODO Auto-generated method stub
-		return productDAO.thumbsupProduct(vo);
+		return productDAO.thumbsupProduct(pid);
 	}
 
 	@Override
@@ -51,9 +54,24 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getMyProductList(int uid) {
+	public List<ProductVO> getMyProductList(String uid) {
 		// TODO Auto-generated method stub
 		return productDAO.getMyProductList(uid);
+	}
+
+	@Override
+	public List<String> getColumnList() {
+		return productDAO.getColumnList();
+	}
+
+	@Override
+	public ProductVO getProduct(int pid) {
+		return productDAO.getProduct(pid);
+	}
+
+	@Override
+	public int updateProduct(ProductVO vo, HttpServletRequest request) throws IOException {
+		return productDAO.updateProduct(vo, request);
 	}
 	
 	

@@ -2,34 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Product">
 	<insert id="insertProduct">
-		insert into Products (uid, name, price, bdate, photo, content)
+		insert into Products (uid, name, price, bdate, photo,
+		content)
 		values
-		(#{uid}, #{name}, #{price}, #{bdate}, #{photo}, #{content})
+		(#{uid}, #{name}, #{price}, #{bdate}, #{photo},
+		#{content})
 	</insert>
 	<update id="updateProduct">
 		update Products
-		set name=#{name}, price=#{price}, bdate=#{bdate}, photo=#{photo}, content=#{content}, tumbsup=#{thumbsup}
+		set name=#{name}, price=#{price},
+		bdate=#{bdate}, photo=#{photo}, content=#{content}
 		where pid=#{pid}
 	</update>
 	<delete id="deleteProduct">
 		delete from Products where pid=#{pid}
 	</delete>
 	<select id="getProduct" resultType="product">
-		select * from Products where pid=#{pid}
+		select * from Products where
+		pid=#{pid}
 	</select>
 	<select id="getrecentProductList" resultType="product">
-		select * from Products order by regdate desc limit 6
+		select * from
+		Products order by regdate desc limit 8
 	</select>
 	<select id="thumbsupProduct">
-		update Products set thumbsup = thumbsup +1 where pid=#{pid}
+		update Products set thumbs = thumbs +1 where
+		pid=#{pid}
 	</select>
 	<select id="getpopularProductList" resultType="product">
-		select * from Products order by thumbsup desc limit 3
+		select * from
+		Products order by thumbs desc limit 4
 	</select>
 	<select id="getProductList" resultType="product">
-		select * from Products order by regdate desc
-	</select>	
+		select * from Products
+		order by regdate desc
+	</select>
 	<select id="getMyProductList" resultType="product">
-		select * from Products where uid=#{uid}
+		select * from Products
+		where uid=#{uid}
+	</select>
+	<select id="getColumlist" resultType="String">
+		SELECT column_name FROM INFORMATION_SCHEMA.columns WHERE table_name='Products' ORDER BY ordinal_position;
 	</select>
 </mapper>
