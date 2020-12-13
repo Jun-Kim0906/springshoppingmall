@@ -51,6 +51,13 @@ public class HomeController {
 			session.invalidate();
 		return "index";
 	}
+	
+	@RequestMapping(value = "/signout", method = RequestMethod.GET)
+	public String signout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/dbsibal", method = RequestMethod.GET)
 	public String sibal(HttpSession session, Model model) {
 		model.addAttribute("testlist", productService.getProductList() );
@@ -67,20 +74,6 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
-	
-//	@RequestMapping(value ="/login/loginCheck", method = RequestMethod.POST)
-//	public ModelAndView logincheck(@ModelAttribute UserVO vo, HttpSession session) {
-//		boolean result = userServicee.loginCheck(vo, session);
-//		ModelAndView mav = new ModelAndView();
-//		if(result) {
-//			mav.setViewName("home");
-//			mav.addObject("msg", "success");
-//		}else {
-//			mav.setViewName("login");
-//			mav.addObject("msg","failure");
-//		}
-//		return mav;
-//	}
 
 	@RequestMapping(value = "/allproduct", method = RequestMethod.GET)
 	public String allproduct(Model model) {
@@ -88,8 +81,9 @@ public class HomeController {
 		return "allproduct";
 	}
 
-	@RequestMapping(value = "/myproduct", method = RequestMethod.GET)
-	public String myproduct() {
+	@RequestMapping(value = "/myproduct/{uid}", method = RequestMethod.GET)
+	public String myproduct(@PathVariable("uid") String uid,Model model) {
+		model.addAttribute("list", productService.getMyProductList(uid) );
 		return "myproduct";
 	}
 	
@@ -105,13 +99,34 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/detail/thumbsup/{pid}", method = RequestMethod.GET)
-	public String thumbsup(@PathVariable("pid") int pid, Model model, HttpServletRequest request) {
+	public String thumbsup(@PathVariable("pid") int pid,Model model) {
 		productService.thumbsupProduct(pid);
+		model.addAttribute("ProductVO", productService.getProduct(pid));
 		return "redirect:/detail/"+pid;
 	}
 	
-	@RequestMapping(value = "/addproduct", method = RequestMethod.GET)
-	public String addproduct() {
+	@RequestMapping(value = "/myproduct/deleteOk/{pid}/{uid}", method = RequestMethod.GET)
+	public String deleteOk(@PathVariable("pid") int pid, @PathVariable("uid") String uid) {
+		productService.deleteProduct(pid);
+		return "redirect:/myproduct/"+uid;
+	}
+	
+	@RequestMapping(value = "/myproduct/editproduct/{pid}", method = RequestMethod.GET)
+	public String editproduct(@PathVariable("pid") int pid, Model model) {
+		ProductVO productVO = productService.getProduct(pid);
+		model.addAttribute("ProductVO", productVO);
+		return "editproduct";
+	}
+	
+	@RequestMapping(value = "/myproduct/editproduct/editproductOk/{pid}/{uid}", method = RequestMethod.POST)
+	public String editproductOk(@PathVariable("pid") int pid,@PathVariable("uid") String uid, ProductVO vo, HttpServletRequest request) throws IOException {
+		vo.setPid(pid);
+		productService.updateProduct(vo, request);
+		return "redirect:/myproduct/"+uid;
+	}
+	
+	@RequestMapping(value = "/myproduct/addproduct/{uid}", method = RequestMethod.GET)
+	public String addproduct(@PathVariable("uid") String uid) {
 		return "addproduct";
 	}
 
@@ -156,8 +171,9 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value = "/addproductOk", method = RequestMethod.POST)
-	public String addproduct(ProductVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
+	@RequestMapping(value = "/addproductOk/{uid}", method = RequestMethod.POST)
+	public String addproduct(ProductVO vo, HttpServletRequest request, @PathVariable("uid") String uid) throws IllegalStateException, IOException {
+		vo.setUid(uid);
 		if (productService.insertProduct(vo, request)== 0) {
 			System.out.println("상품추가 실패");
 			return "";
@@ -166,6 +182,7 @@ public class HomeController {
 			return "redirect:/";
 		}
 	}
+
 //
 //	@RequestMapping(value = "/addproductOk", method = RequestMethod.POST)
 //	public String addprouct() {

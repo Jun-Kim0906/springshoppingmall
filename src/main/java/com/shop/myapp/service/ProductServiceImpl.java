@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getMyProductList(int uid) {
+	public List<ProductVO> getMyProductList(String uid) {
 		// TODO Auto-generated method stub
 		return productDAO.getMyProductList(uid);
 	}
@@ -67,6 +67,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ProductVO getProduct(int pid) {
 		return productDAO.getProduct(pid);
+	}
+
+	@Override
+	public int updateProduct(ProductVO vo, HttpServletRequest request) throws IOException {
+		return productDAO.updateProduct(vo, request);
 	}
 	
 	

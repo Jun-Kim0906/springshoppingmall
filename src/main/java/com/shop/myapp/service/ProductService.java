@@ -14,7 +14,8 @@ public interface ProductService {
 	public int thumbsupProduct(int pid);
 	public List<ProductVO> getpopularProductList();
 	public List<ProductVO> getProductList();
-	public List<ProductVO> getMyProductList(int uid);
+	public List<ProductVO> getMyProductList(String uid);
 	public ProductVO getProduct(int pid);
 	public List<String> getColumnList();
+	public int updateProduct(ProductVO vo, HttpServletRequest request) throws IOException;
 }

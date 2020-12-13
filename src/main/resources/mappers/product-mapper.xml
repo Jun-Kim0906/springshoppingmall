@@ -11,8 +11,7 @@
 	<update id="updateProduct">
 		update Products
 		set name=#{name}, price=#{price},
-		bdate=#{bdate}, photo=#{photo}, content=#{content},
-		thumbs=#{thumbsup}
+		bdate=#{bdate}, photo=#{photo}, content=#{content}
 		where pid=#{pid}
 	</update>
 	<delete id="deleteProduct">
